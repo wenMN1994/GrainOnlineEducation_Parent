@@ -75,5 +75,45 @@ public class EduTeacherController {
             return Result.error();
         }
     }
+
+    @ApiOperation(value = "新增讲师")
+    @PostMapping("save")
+    public Result saveTeacher(@RequestBody EduTeacher teacher){
+        try {
+            teacherService.save(teacher);
+            return Result.ok();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.error();
+        }
+    }
+
+    @ApiOperation(value = "根据ID查询")
+    @GetMapping("{id}")
+    public Result selectTeacherById(
+            @ApiParam(name = "id", value = "讲师ID", required = true)
+            @PathVariable String id){
+        try {
+            EduTeacher teacher = teacherService.getById(id);
+            return Result.ok().data("teacher", teacher);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.error();
+        }
+    }
+
+    @ApiOperation(value = "修改讲师信息")
+    @PutMapping("update")
+    public Result updateTeacherById(@RequestBody EduTeacher teacher){
+        try {
+            teacherService.updateById(teacher);
+            return Result.ok();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.error();
+        }
+    }
+
+
 }
 

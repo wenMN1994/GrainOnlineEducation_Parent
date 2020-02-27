@@ -26,7 +26,8 @@ public class DataMetaObjectHandler implements MetaObjectHandler {
     public void insertFill(MetaObject metaObject) {
         this.setFieldValByName("gmtCreate", new Date(), metaObject);
         this.setFieldValByName("gmtModified", new Date(), metaObject);
-        this.setFieldValByName("isDeleted", 0, metaObject);
+        //自动补充teacher对象属性中的数据，isDeleted：Boolean 所以我们应该放入true，false
+        this.setFieldValByName("isDeleted", false, metaObject);
     }
 
     //在执行update语句时被拦截操作的
