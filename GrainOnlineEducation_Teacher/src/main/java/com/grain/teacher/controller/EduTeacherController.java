@@ -1,6 +1,7 @@
 package com.grain.teacher.controller;
 
 
+import com.grain.common.result.Result;
 import com.grain.teacher.entity.EduTeacher;
 import com.grain.teacher.service.EduTeacherService;
 import io.swagger.annotations.Api;
@@ -29,21 +30,27 @@ public class EduTeacherController {
 
     @ApiOperation(value = "所有讲师列表")
     @GetMapping("list")
-    public List<EduTeacher> list(){
-        return teacherService.list(null);
+    public Result list(){
+        try {
+            List<EduTeacher> list = teacherService.list(null);
+            return Result.ok().data("teacherItems", list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.error();
+        }
     }
 
     @ApiOperation(value = "根据ID删除讲师")
     @DeleteMapping("{id}")
-    public boolean deleteTeacherById(
+    public Result deleteTeacherById(
             @ApiParam(name = "id", value = "讲师ID", required = true)
             @PathVariable String id){
         try {
             teacherService.removeById(id);
-            return true;
+            return Result.ok();
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return Result.error();
         }
     }
 

@@ -9,24 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>GrainOnlineEducation_Teacher</artifactId>
+    <artifactId>GrainOnlineEducation_Common</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
-        <!--mybatis-plus-->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
-        <!--mysql-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <!-- velocity 模板引擎, Mybatis Plus 代码生成器需要 -->
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity-engine-core</artifactId>
-        </dependency>
         <!--swagger-->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -47,17 +33,8 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.grain</groupId>
-            <artifactId>GrainOnlineEducation_Common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
     </dependencies>
+
 
 
 </project>
