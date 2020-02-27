@@ -25,4 +25,12 @@ public class EduException extends RuntimeException {
     @ApiModelProperty(value = "异常消息")
     private String msg;
 
+    @Override
+    public String toString() {
+        return "EduException{" +
+                "message=" + this.getMsg() +
+                ", code=" + code +
+                '}';
+    }
+
 }

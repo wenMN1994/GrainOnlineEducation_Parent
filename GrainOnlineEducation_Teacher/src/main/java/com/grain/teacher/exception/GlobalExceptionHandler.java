@@ -3,6 +3,8 @@ package com.grain.teacher.exception;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.grain.common.result.Result;
 import com.grain.common.result.ResultCode;
+import com.grain.common.utils.ExceptionUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @modified By：
  * @version: $
  */
+@Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -24,6 +27,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public Result error(Exception e){
         e.printStackTrace();
+        log.error(ExceptionUtil.getMessage(e));
         return Result.error().message("出错了");
     }
 
