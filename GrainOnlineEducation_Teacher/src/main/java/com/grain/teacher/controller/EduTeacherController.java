@@ -1,8 +1,10 @@
 package com.grain.teacher.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.grain.common.result.Result;
 import com.grain.teacher.entity.EduTeacher;
+import com.grain.teacher.entity.query.TeacherQuery;
 import com.grain.teacher.service.EduTeacherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,7 +35,7 @@ public class EduTeacherController {
     public Result list(){
         try {
             List<EduTeacher> list = teacherService.list(null);
-            return Result.ok().data("teacherItems", list);
+            return Result.ok().data("items", list);
         } catch (Exception e) {
             e.printStackTrace();
             return Result.error();
@@ -54,6 +56,24 @@ public class EduTeacherController {
         }
     }
 
+    @ApiOperation(value = "分页讲师列表")
+    @GetMapping("/{page}/{limit}")
+    public Result selectTeacherByPage(
+            @ApiParam(name = "page", value = "当前页", required = true)
+            @PathVariable(value = "page") Integer  page,
+            @ApiParam(name = "limit", value = "每页显示记录数", required = true)
+            @PathVariable(value = "limit") Integer  limit,
+            @ApiParam(name = "teacherQuery", value = "查询对象", required = false)
+                    TeacherQuery teacherQuery) {
 
+        try {
+            Page<EduTeacher> teacherPage = new Page<>(page, limit);
+            teacherService.pageQuery(teacherPage,teacherQuery);
+            return Result.ok().data("total", teacherPage.getTotal()).data("rows",teacherPage.getRecords());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.error();
+        }
+    }
 }
 
