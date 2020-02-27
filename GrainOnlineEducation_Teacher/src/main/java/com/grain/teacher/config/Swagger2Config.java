@@ -34,7 +34,7 @@ public class Swagger2Config {
     private ApiInfo webApiInfo(){
 
         return new ApiInfoBuilder()
-                .title("网站-讲师API文档")
+                .title("谷粒学院-讲师API文档")
                 .description("本文档描述了讲师服务接口定义")
                 .version("1.0")
                 .contact(new Contact("Dragon Wen", "www.dragonwen.cn", "18475536452@163.com"))

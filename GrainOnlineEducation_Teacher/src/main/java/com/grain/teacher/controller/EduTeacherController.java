@@ -56,8 +56,26 @@ public class EduTeacherController {
         }
     }
 
-    @ApiOperation(value = "分页讲师列表")
+    @ApiOperation(value = "讲师分页列表")
     @GetMapping("/{page}/{limit}")
+    public Result selectTeacherByPage(
+            @ApiParam(name = "page", value = "当前页", required = true)
+            @PathVariable(value = "page") Integer  page,
+            @ApiParam(name = "limit", value = "每页显示记录数", required = true)
+            @PathVariable(value = "limit") Integer  limit) {
+
+        try {
+            Page<EduTeacher> teacherPage = new Page<>(page, limit);
+            teacherService.page(teacherPage, null);
+            return Result.ok().data("total", teacherPage.getTotal()).data("rows",teacherPage.getRecords());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.error();
+        }
+    }
+
+    @ApiOperation(value = "根据讲师条件分页查询")
+    @PostMapping("/{page}/{limit}")
     public Result selectTeacherByPage(
             @ApiParam(name = "page", value = "当前页", required = true)
             @PathVariable(value = "page") Integer  page,
