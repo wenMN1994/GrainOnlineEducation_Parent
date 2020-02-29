@@ -5,6 +5,7 @@
     <modules>
         <module>GrainOnlineEducation_Teacher</module>
         <module>GrainOnlineEducation_Common</module>
+        <module>GrainOnlineEducation_OSS</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
