@@ -26,7 +26,7 @@ public class UserController {
         return Result.ok()
                 .data("roles","[\"admin\"]")
                 .data("name","admin")
-                .data("avatar","https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
+                .data("avatar","https://grain-online-education.oss-cn-shenzhen.aliyuncs.com/avatar/avatar.jpg");
     }
 
 }

@@ -1,6 +1,5 @@
 package com.grain.teacher.exception;
 
-import com.baomidou.mybatisplus.extension.api.R;
 import com.grain.common.result.Result;
 import com.grain.common.result.ResultCode;
 import com.grain.common.utils.ExceptionUtil;
