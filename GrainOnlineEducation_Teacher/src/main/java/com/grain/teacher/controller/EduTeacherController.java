@@ -27,6 +27,7 @@ import java.util.List;
 @Api("讲师管理")
 @RestController
 @RequestMapping("/teacher")
+@CrossOrigin
 public class EduTeacherController {
 
     @Autowired
@@ -84,7 +85,7 @@ public class EduTeacherController {
             @ApiParam(name = "limit", value = "每页显示记录数", required = true)
             @PathVariable(value = "limit") Integer  limit,
             @ApiParam(name = "teacherQuery", value = "查询对象", required = false)
-                    TeacherQuery teacherQuery) {
+            @RequestBody TeacherQuery teacherQuery) {
 
         try {
             Page<EduTeacher> teacherPage = new Page<>(page, limit);
