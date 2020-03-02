@@ -2,6 +2,9 @@ package com.grain.teacher.service;
 
 import com.grain.teacher.entity.EduSubject;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface EduSubjectService extends IService<EduSubject> {
 
+    /**
+     * 导入Excl表格
+     * @param file
+     * @return
+     */
+    List<String> importExcel(MultipartFile file);
 }
