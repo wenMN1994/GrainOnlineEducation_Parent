@@ -2,6 +2,8 @@ package com.grain.teacher.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.grain.teacher.entity.EduSubject;
+import com.grain.teacher.entity.vo.OneSubject;
+import com.grain.teacher.entity.vo.TwoSubject;
 import com.grain.teacher.mapper.EduSubjectMapper;
 import com.grain.teacher.service.EduSubjectService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -10,6 +12,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -109,6 +112,38 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
             e.printStackTrace();
         }
         return meg;
+    }
+
+    @Override
+    public List<OneSubject> getTree() {
+        //1、创建一个集合存放OneSubject
+        List<OneSubject> oneSubjects = new ArrayList<>();
+        //2、获取一级分类的列表
+        QueryWrapper<EduSubject> wrapper = new QueryWrapper<>();
+        wrapper.eq("parent_id", 0);
+        List<EduSubject> eduSubjectsList = baseMapper.selectList(wrapper);
+        //3、遍历一级分类的列表
+        for (EduSubject subject : eduSubjectsList) {
+            //4、把一级分类对象复制到OneObject
+            OneSubject oneSubject = new OneSubject();
+            BeanUtils.copyProperties(subject, oneSubject);
+            //5、根据每一个一级分类获取二级分类的列表
+            QueryWrapper<EduSubject> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("parent_id", oneSubject.getId());
+            List<EduSubject> eduSubjects = baseMapper.selectList(queryWrapper);
+            //6、遍历二级分类列表
+            for (EduSubject su: eduSubjects) {
+                //7、把二级分类对象复制到TwoObject
+                TwoSubject twoSubject = new TwoSubject();
+                BeanUtils.copyProperties(su, twoSubject);
+                //8、把TwoObject添加到OneObject的children集合属性中
+                oneSubject.getChildren().add(twoSubject);
+            }
+            //9、把OneSubject添加到集合中
+            oneSubjects.add(oneSubject);
+        }
+
+        return oneSubjects;
     }
 
     /**

@@ -2,6 +2,7 @@ package com.grain.teacher.service;
 
 import com.grain.teacher.entity.EduSubject;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.grain.teacher.entity.vo.OneSubject;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -22,4 +23,10 @@ public interface EduSubjectService extends IService<EduSubject> {
      * @return
      */
     List<String> importExcel(MultipartFile file);
+
+    /**
+     * 获取课程分类树状数据
+     * @return
+     */
+    List<OneSubject> getTree();
 }
