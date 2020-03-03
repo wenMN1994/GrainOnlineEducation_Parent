@@ -38,9 +38,16 @@ public interface EduSubjectService extends IService<EduSubject> {
     boolean deleteById(String id);
 
     /**
-     * 保存课程分类
+     * 保存课程一级分类
      * @param subject
      * @return
      */
     boolean saveLevelOne(EduSubject subject);
+
+    /**
+     * 保存课程二级分类
+     * @param subject
+     * @return
+     */
+    boolean saveLevelTwo(EduSubject subject);
 }

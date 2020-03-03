@@ -171,6 +171,18 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
         return false;
     }
 
+    @Override
+    public boolean saveLevelTwo(EduSubject subject) {
+        //判断此一级分类中是否存在此二级分类的title
+        EduSubject sub = this.selectSubjectByNameAndParentId(subject.getTitle(), subject.getParentId());
+        if(sub != null){
+            //存在
+            return false;
+        }
+        int insert = baseMapper.insert(subject);
+        return insert == 1;
+    }
+
 
     /**
      * 根据课程分类的名字和父类ID查询分类是否存在

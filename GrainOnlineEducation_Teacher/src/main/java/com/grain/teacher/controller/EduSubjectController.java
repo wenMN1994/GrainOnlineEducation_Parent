@@ -81,5 +81,18 @@ public class EduSubjectController {
         }
     }
 
+    @ApiOperation(value = "新增二级分类")
+    @PostMapping("saveLevelTwo")
+    public Result saveLevelTwo(
+            @ApiParam(name = "subject", value = "课程分类对象", required = true)
+            @RequestBody EduSubject subject){
+
+        boolean result = subjectService.saveLevelTwo(subject);
+        if(result){
+            return Result.ok();
+        }else{
+            return Result.error().message("新增失败");
+        }
+    }
 }
 
