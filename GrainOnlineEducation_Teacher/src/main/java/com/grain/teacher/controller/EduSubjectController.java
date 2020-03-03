@@ -2,8 +2,11 @@ package com.grain.teacher.controller;
 
 
 import com.grain.common.result.Result;
+import com.grain.teacher.entity.EduSubject;
 import com.grain.teacher.entity.vo.OneSubject;
 import com.grain.teacher.service.EduSubjectService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,5 +51,21 @@ public class EduSubjectController {
         List<OneSubject> subjectList = subjectService.getTree();
         return Result.ok().data("subjectList", subjectList);
     }
+
+    /**
+     * 根据ID删除课程分类
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/{id}")
+    public Result deleteById(@PathVariable  String id){
+        boolean isDelete = subjectService.deleteById(id);
+        if(isDelete){
+            return Result.ok();
+        } else {
+            return Result.error();
+        }
+    }
+
 }
 

@@ -29,4 +29,12 @@ public interface EduSubjectService extends IService<EduSubject> {
      * @return
      */
     List<OneSubject> getTree();
+
+    /**
+     * 根据ID删除课程分类
+     * @param id
+     * @return
+     */
+    boolean deleteById(String id);
+
 }
