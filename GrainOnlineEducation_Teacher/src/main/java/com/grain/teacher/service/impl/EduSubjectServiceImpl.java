@@ -159,6 +159,19 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
         return i == 1;
     }
 
+    @Override
+    public boolean saveLevelOne(EduSubject subject) {
+
+        EduSubject subjectLevelOne = this.selectSubjectByName(subject.getTitle());
+
+        if(subjectLevelOne == null){
+            return super.save(subject);
+        }
+
+        return false;
+    }
+
+
     /**
      * 根据课程分类的名字和父类ID查询分类是否存在
      * @param stringCellValue

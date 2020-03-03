@@ -67,5 +67,19 @@ public class EduSubjectController {
         }
     }
 
+    @ApiOperation(value = "新增一级分类")
+    @PostMapping("saveLevelOne")
+    public Result saveLevelOne(
+            @ApiParam(name = "subject", value = "课程分类对象", required = true)
+            @RequestBody EduSubject subject){
+
+        boolean result = subjectService.saveLevelOne(subject);
+        if(result){
+            return Result.ok();
+        }else{
+            return Result.error().message("新增失败");
+        }
+    }
+
 }
 
