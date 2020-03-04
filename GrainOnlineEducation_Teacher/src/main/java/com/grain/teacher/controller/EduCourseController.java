@@ -36,5 +36,14 @@ public class EduCourseController {
         String courseId = courseService.saveVo(courseVo);
         return Result.ok().data("id", courseId);
     }
+
+    /**
+     * 根据课程ID获取课程基本信息和描述
+     */
+    @GetMapping("/{id}")
+    public Result getCourseVoById(@PathVariable String id){
+        CourseVo vo = courseService.getCourseVoById(id);
+        return Result.ok().data("courseInfo",vo);
+    }
 }
 

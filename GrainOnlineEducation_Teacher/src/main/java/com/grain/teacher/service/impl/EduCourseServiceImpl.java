@@ -1,7 +1,9 @@
 package com.grain.teacher.service.impl;
 
 import com.grain.teacher.entity.EduCourse;
+import com.grain.teacher.entity.EduCourseDescription;
 import com.grain.teacher.entity.vo.CourseVo;
+import com.grain.teacher.exception.EduException;
 import com.grain.teacher.mapper.EduCourseMapper;
 import com.grain.teacher.service.EduCourseDescriptionService;
 import com.grain.teacher.service.EduCourseService;
@@ -35,5 +37,23 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         courseVo.getEduCourseDesc().setId(courseId);
         courseDescriptionService.save(courseVo.getEduCourseDesc());
         return courseId;
+    }
+
+    @Override
+    public CourseVo getCourseVoById(String id) {
+        CourseVo courseVo = new CourseVo();
+        //获取课程
+        EduCourse eduCourse = baseMapper.selectById(id);
+        if(eduCourse == null){
+            throw new EduException(20001,"此课程不存在");
+        }
+        courseVo.setEduCourse(eduCourse);
+
+        EduCourseDescription eduCourseDescription = courseDescriptionService.getById(id);
+        if(eduCourseDescription != null){
+            courseVo.setEduCourseDesc(eduCourseDescription);
+        }
+        return courseVo;
+
     }
 }
