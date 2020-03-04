@@ -2,10 +2,12 @@ package com.grain.oss.controller;
 
 import com.grain.common.result.Result;
 import com.grain.oss.service.FileService;
+import com.grain.oss.utils.ConstantPropertiesUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,8 +35,16 @@ public class FileController {
      */
     @ApiOperation(value = "文件上传")
     @PostMapping("file/upload")
-    public Result upload(@ApiParam(name = "file", value = "文件", required = true)
-                             @RequestParam("file") MultipartFile file){
+    public Result upload(
+            @ApiParam(name = "file", value = "文件", required = true)
+            @RequestParam("file") MultipartFile file,
+
+            @ApiParam(name = "host", value = "文件上传路径", required = false)
+            @RequestParam(value = "host", required = false) String host) {
+
+        if(!StringUtils.isEmpty(host)){
+            ConstantPropertiesUtil.FILE_HOST = host;
+        }
 
         //调用阿里云OSS上传的程序
         String uploadUrl = fileService.upload(file);
