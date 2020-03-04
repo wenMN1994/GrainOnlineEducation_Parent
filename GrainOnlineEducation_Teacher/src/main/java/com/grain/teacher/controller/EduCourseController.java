@@ -1,10 +1,12 @@
 package com.grain.teacher.controller;
 
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import com.grain.common.result.Result;
+import com.grain.teacher.entity.vo.CourseVo;
+import com.grain.teacher.service.EduCourseDescriptionService;
+import com.grain.teacher.service.EduCourseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -19,5 +21,20 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 public class EduCourseController {
 
+    @Autowired
+    private EduCourseService courseService;
+
+    @Autowired
+    private EduCourseDescriptionService courseDescriptionService;
+
+    /**
+     * 保存基本信息
+     */
+    @PostMapping("save")
+    public Result save(@RequestBody CourseVo courseVo){
+
+        String courseId = courseService.saveVo(courseVo);
+        return Result.ok().data("id", courseId);
+    }
 }
 
