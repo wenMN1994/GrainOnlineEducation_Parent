@@ -1,7 +1,9 @@
 package com.grain.teacher.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.grain.teacher.entity.EduCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.grain.teacher.entity.query.CourseQuery;
 import com.grain.teacher.entity.vo.CourseVo;
 
 /**
@@ -34,4 +36,11 @@ public interface EduCourseService extends IService<EduCourse> {
      * @return
      */
     boolean updateCourseVo(CourseVo courseVo);
+
+    /**
+     * 根据条件分页查询课程列表
+     * @param pageParam
+     * @param courseQuery
+     */
+    void getPageList(Page<EduCourse> pageParam, CourseQuery courseQuery);
 }
