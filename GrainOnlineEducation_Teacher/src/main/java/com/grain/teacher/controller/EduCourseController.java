@@ -40,10 +40,24 @@ public class EduCourseController {
     /**
      * 根据课程ID获取课程基本信息和描述
      */
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public Result getCourseVoById(@PathVariable String id){
         CourseVo vo = courseService.getCourseVoById(id);
         return Result.ok().data("courseInfo",vo);
     }
+
+    /**
+     * 修改课程基本信息和描述
+     */
+    @PutMapping("update")
+    public Result updateCourseVo(@RequestBody CourseVo courseVo){
+        boolean flag = courseService.updateCourseVo(courseVo);
+        if(flag){
+            return Result.ok();
+        } else {
+            return Result.error();
+        }
+    }
+
 }
 
