@@ -107,4 +107,21 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         baseMapper.selectPage(pageParam, queryWrapper);
 
     }
+
+    @Override
+    public boolean deleteCourseById(String id) {
+        //TODO 根据id删除所有视频
+
+        //TODO 根据id删除所有章节
+
+        //删除课程描述
+        boolean b = courseDescriptionService.removeById(id);
+        if(!b){// 如果描述没有删除成功直接返回
+            return false;
+        }
+        Integer result = baseMapper.deleteById(id);
+
+        return result == 1 ;
+
+    }
 }

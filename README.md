@@ -1,5 +1,7 @@
 谷粒学院，是一个B2C模式的职业技能在线教育系统，分为前台用户系统和后台运营平台。
-谷粒学院前端UI请参考：https://github.com/wenMN1994/GrainOnlineEducation_UI
+谷粒学院后台接口请参考：https://github.com/wenMN1994/GrainOnlineEducation_Parent
+谷粒学院后台管理UI请参考：https://github.com/wenMN1994/GrainOnlineEducation_UI
+谷粒学院前台UI请参考：
 # 前后台分离开发：
 
 1. 解耦
