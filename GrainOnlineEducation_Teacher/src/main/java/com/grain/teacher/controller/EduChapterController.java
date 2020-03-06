@@ -1,10 +1,13 @@
 package com.grain.teacher.controller;
 
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.grain.common.result.Result;
+import com.grain.teacher.entity.vo.OneChapter;
+import com.grain.teacher.service.EduChapterService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 /**
  * <p>
@@ -18,6 +21,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/chapter")
 @CrossOrigin
 public class EduChapterController {
+
+    @Autowired
+    private EduChapterService chapterService;
+
+    /**
+     * 根据课程ID查询章节、小节的列表
+     * 1、创建一个对象，作为章节Vo，里面包括二级Vo
+     * 2、创建二级的Vo（Video）
+     * 3、根据课程ID查询章节的列表，遍历这个列表，根据每一个章节的ID查询二级列表（Video集合）
+     * @param courseId
+     * @return
+     */
+    @GetMapping("{courseId}")
+    public Result getChapterAndVideoList(@PathVariable String courseId){
+        List<OneChapter> list = chapterService.queryChapterAndVideoList(courseId);
+        if(list.size()>=0){
+            return Result.ok().data("list",list);
+        }
+        return Result.error();
+    }
+
 
 }
 
