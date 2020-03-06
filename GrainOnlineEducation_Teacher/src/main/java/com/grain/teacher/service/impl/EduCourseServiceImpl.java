@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.Map;
+
 /**
  * <p>
  * 课程 服务实现类
@@ -124,4 +126,20 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         return result == 1 ;
 
     }
+
+    @Override
+    public Boolean updateStatusById(String id) {
+        EduCourse course = new EduCourse();
+        course.setId(id);
+        course.setStatus("Normal");
+        int update = baseMapper.updateById(course);
+        return update > 0;
+    }
+
+    @Override
+    public Map<String, Object> getMapById(String id) {
+        Map<String, Object> map = baseMapper.getMapById(id);
+        return map;
+    }
+
 }

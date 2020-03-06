@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -107,6 +108,32 @@ public class EduCourseController {
             return Result.ok();
         }else{
             return Result.error().message("删除失败");
+        }
+    }
+
+    /**
+     * 根据课程Id查询课程Map对象
+     * @param id
+     * @return
+     */
+    @GetMapping("vo/{id}")
+    public Result getCoursePublishById(@PathVariable String id){
+        Map<String, Object> map = courseService.getMapById(id);
+        return Result.ok().data(map);
+    }
+
+    /**
+     * 根据课程Id修改课程状态
+     * @param id
+     * @return
+     */
+    @PutMapping("/updateStatus/{id}")
+    public Result updateByStatusById(@PathVariable String id){
+        Boolean flag = courseService.updateStatusById(id);
+        if(flag){
+            return Result.ok();
+        } else{
+            return Result.error();
         }
     }
 

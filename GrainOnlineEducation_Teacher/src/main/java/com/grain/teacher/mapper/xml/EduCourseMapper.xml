@@ -2,4 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.grain.teacher.mapper.EduCourseMapper">
 
+    <select id="getMapById" parameterType="String" resultType="map">
+        select
+        et.`name` as teacherName,
+        ec.id,
+        ec.cover,
+        ec.lesson_num as lessonNum,
+        ec.title,
+        CONVERT(ec.price, DECIMAL(8,2)) as price ,
+        es1.title as subjectParentTitle,
+        es2.title as subjectTitle
+
+        from edu_course ec
+        LEFT JOIN edu_teacher et on ec.teacher_id = et.id
+        LEFT JOIN edu_subject es1 on ec.subject_parent_id = es1.id
+        LEFT JOIN edu_subject es2 on ec.subject_id = es2.id
+        where ec.id = #{id}
+    </select>
 </mapper>

@@ -3,6 +3,8 @@ package com.grain.teacher.mapper;
 import com.grain.teacher.entity.EduCourse;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.Map;
+
 /**
  * <p>
  * 课程 Mapper 接口
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface EduCourseMapper extends BaseMapper<EduCourse> {
 
+    Map<String, Object> getMapById(String id);
 }
