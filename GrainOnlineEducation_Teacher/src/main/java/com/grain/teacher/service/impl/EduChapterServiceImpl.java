@@ -5,6 +5,7 @@ import com.grain.teacher.entity.EduChapter;
 import com.grain.teacher.entity.EduVideo;
 import com.grain.teacher.entity.vo.OneChapter;
 import com.grain.teacher.entity.vo.TwoVideo;
+import com.grain.teacher.exception.EduException;
 import com.grain.teacher.mapper.EduChapterMapper;
 import com.grain.teacher.service.EduChapterService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -88,5 +89,20 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
         }
         int update = baseMapper.updateById(chapter);
         return update == 1;
+    }
+
+    @Override
+    public boolean deleteChapterById(String id) {
+        //判断是否存在小节
+        QueryWrapper<EduVideo> wrapper = new QueryWrapper<>();
+        wrapper.eq("chapter_id",id);
+        List<EduVideo> list = videoService.list(wrapper);
+        if(list.size() != 0){
+            throw new EduException(20001,"该分章节下存在视频课程，请先删除视频课程");
+        }
+        //删除章节
+        int delete = baseMapper.deleteById(id);
+        return delete > 0;
+
     }
 }

@@ -102,5 +102,24 @@ public class EduChapterController {
         }
     }
 
+    /**
+     * 根据章节的ID删除章节信息
+     * @param id
+     * @return
+     */
+    @ApiOperation(value = "根据章节的ID删除章节信息")
+    @DeleteMapping("{id}")
+    public Result deleteChapterById(
+            @ApiParam(name = "id", value = "章节ID", required = true)
+            @PathVariable String id){
+
+        boolean flag = chapterService.deleteChapterById(id);
+        if(flag){
+            return Result.ok();
+        } else {
+            return Result.error();
+        }
+    }
+
 }
 
