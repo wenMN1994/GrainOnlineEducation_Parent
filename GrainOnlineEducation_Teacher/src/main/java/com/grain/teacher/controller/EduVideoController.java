@@ -6,6 +6,7 @@ import com.grain.teacher.entity.EduVideo;
 import com.grain.teacher.service.EduVideoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,9 @@ public class EduVideoController {
      */
     @ApiOperation(value = "保存课程章节小节")
     @PostMapping("save")
-    public Result save(@RequestBody EduVideo video){
+    public Result save(
+            @ApiParam(name = "video", value = "课程视频对象", required = true)
+            @RequestBody EduVideo video){
         boolean save = videoService.save(video);
         if(save){
             return Result.ok();
@@ -48,7 +51,9 @@ public class EduVideoController {
      */
     @ApiOperation(value = "查询课程章节小节")
     @GetMapping("{id}")
-    public Result getVideoById(@PathVariable String id){
+    public Result getVideoById(
+            @ApiParam(name = "id", value = "课程章节小节", required = true)
+            @PathVariable String id){
         try {
             EduVideo eduVideo = videoService.getById(id);
             return  Result.ok().data("eduVideo",eduVideo);
@@ -65,7 +70,9 @@ public class EduVideoController {
      */
     @ApiOperation(value = "修改课程章节小节")
     @PutMapping("update")
-    public Result updateVideo(@RequestBody EduVideo video){
+    public Result updateVideo(
+            @ApiParam(name = "video", value = "课程章节小节对象", required = true)
+            @RequestBody EduVideo video){
         boolean update = videoService.updateById(video);
         if(update){
             return Result.ok();
@@ -80,7 +87,9 @@ public class EduVideoController {
      */
     @ApiOperation(value = "删除课程章节小节")
     @DeleteMapping("{id}")
-    public Result deleteVideo(@PathVariable String id){
+    public Result deleteVideo(
+            @ApiParam(name = "id", value = "课程章节小节ID", required = true)
+            @PathVariable String id){
         Boolean flag = videoService.deleteByVideoId(id);
         if(flag){
             return Result.ok();

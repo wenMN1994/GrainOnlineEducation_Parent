@@ -31,7 +31,11 @@ public class EduTeacherController {
     @Autowired
     private EduTeacherService teacherService;
 
-    @ApiOperation(value = "所有讲师列表")
+    /**
+     * 获取所有讲师列表
+     * @return
+     */
+    @ApiOperation(value = "获取所有讲师列表")
     @GetMapping("list")
     public Result list(){
         try {
@@ -43,6 +47,11 @@ public class EduTeacherController {
         }
     }
 
+    /**
+     * 根据ID删除讲师
+     * @param id
+     * @return
+     */
     @ApiOperation(value = "根据ID删除讲师")
     @DeleteMapping("{id}")
     public Result deleteTeacherById(
@@ -57,6 +66,12 @@ public class EduTeacherController {
         }
     }
 
+    /**
+     * 讲师分页列表
+     * @param page
+     * @param limit
+     * @return
+     */
     @ApiOperation(value = "讲师分页列表")
     @GetMapping("/{page}/{limit}")
     public Result selectTeacherByPage(
@@ -75,6 +90,13 @@ public class EduTeacherController {
         }
     }
 
+    /**
+     * 根据讲师条件分页查询
+     * @param page
+     * @param limit
+     * @param teacherQuery
+     * @return
+     */
     @ApiOperation(value = "根据讲师条件分页查询")
     @PostMapping("/{page}/{limit}")
     public Result selectTeacherByPage(
@@ -95,9 +117,16 @@ public class EduTeacherController {
         }
     }
 
+    /**
+     * 新增讲师
+     * @param teacher
+     * @return
+     */
     @ApiOperation(value = "新增讲师")
     @PostMapping("save")
-    public Result saveTeacher(@RequestBody EduTeacher teacher){
+    public Result saveTeacher(
+            @ApiParam(name = "teacher", value = "讲师对象", required = true)
+            @RequestBody EduTeacher teacher){
         try {
             teacherService.save(teacher);
             return Result.ok();
@@ -107,7 +136,12 @@ public class EduTeacherController {
         }
     }
 
-    @ApiOperation(value = "根据ID查询")
+    /**
+     * 根据ID查询讲师
+     * @param id
+     * @return
+     */
+    @ApiOperation(value = "根据ID查询讲师")
     @GetMapping("{id}")
     public Result selectTeacherById(
             @ApiParam(name = "id", value = "讲师ID", required = true)
@@ -121,9 +155,16 @@ public class EduTeacherController {
         }
     }
 
-    @ApiOperation(value = "修改讲师信息")
+    /**
+     * 根据讲师ID修改讲师信息
+     * @param teacher
+     * @return
+     */
+    @ApiOperation(value = "根据讲师ID修改讲师信息")
     @PutMapping("update")
-    public Result updateTeacherById(@RequestBody EduTeacher teacher){
+    public Result updateTeacherById(
+            @ApiParam(name = "teacher", value = "讲师对象", required = true)
+            @RequestBody EduTeacher teacher){
         try {
             teacherService.updateById(teacher);
             return Result.ok();

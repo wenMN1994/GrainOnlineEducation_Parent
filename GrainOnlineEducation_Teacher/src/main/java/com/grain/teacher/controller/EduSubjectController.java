@@ -5,6 +5,7 @@ import com.grain.common.result.Result;
 import com.grain.teacher.entity.EduSubject;
 import com.grain.teacher.entity.vo.OneSubject;
 import com.grain.teacher.service.EduSubjectService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import java.util.List;
  * @author Dragon Wen
  * @since 2020-03-01
  */
+@Api(value = "课程科目(分类)管理")
 @RestController
 @RequestMapping("/subject")
 @CrossOrigin
@@ -30,6 +32,12 @@ public class EduSubjectController {
     @Autowired
     private EduSubjectService subjectService;
 
+    /**
+     * 导入课程分类
+     * @param file
+     * @return
+     */
+    @ApiOperation(value = "导入课程分类")
     @PostMapping("import")
     public Result importSubject(MultipartFile file){
         //考虑到Excel模板中的数据不准确，所以返回多个错误信息，那么多个错误信息放在集合中
@@ -46,6 +54,7 @@ public class EduSubjectController {
      * 获取课程分类的Tree
      * @return
      */
+    @ApiOperation(value = "获取课程分类的Tree")
     @GetMapping("/tree")
     public Result TreeSubject(){
         List<OneSubject> subjectList = subjectService.getTree();
@@ -57,8 +66,11 @@ public class EduSubjectController {
      * @param id
      * @return
      */
+    @ApiOperation(value = "根据ID删除课程分类")
     @DeleteMapping("/{id}")
-    public Result deleteById(@PathVariable  String id){
+    public Result deleteById(
+            @ApiParam(name = "id", value = "课程ID", required = true)
+            @PathVariable  String id){
         boolean isDelete = subjectService.deleteById(id);
         if(isDelete){
             return Result.ok();
@@ -67,6 +79,11 @@ public class EduSubjectController {
         }
     }
 
+    /**
+     * 新增一级分类
+     * @param subject
+     * @return
+     */
     @ApiOperation(value = "新增一级分类")
     @PostMapping("saveLevelOne")
     public Result saveLevelOne(
@@ -81,6 +98,11 @@ public class EduSubjectController {
         }
     }
 
+    /**
+     * 新增二级分类
+     * @param subject
+     * @return
+     */
     @ApiOperation(value = "新增二级分类")
     @PostMapping("saveLevelTwo")
     public Result saveLevelTwo(

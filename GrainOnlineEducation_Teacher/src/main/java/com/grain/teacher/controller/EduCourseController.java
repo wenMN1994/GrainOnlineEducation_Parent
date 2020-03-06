@@ -8,6 +8,7 @@ import com.grain.teacher.entity.query.CourseQuery;
 import com.grain.teacher.entity.vo.CourseVo;
 import com.grain.teacher.service.EduCourseDescriptionService;
 import com.grain.teacher.service.EduCourseService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import java.util.Map;
  * @author Dragon Wen
  * @since 2020-03-03
  */
+@Api(value = "课程基本信息管理")
 @RestController
 @RequestMapping("/course")
 @CrossOrigin
@@ -38,6 +40,7 @@ public class EduCourseController {
     /**
      * 保存基本信息
      */
+    @ApiOperation(value = "保存基本信息")
     @PostMapping("save")
     public Result save(@RequestBody CourseVo courseVo){
 
@@ -48,6 +51,7 @@ public class EduCourseController {
     /**
      * 根据课程ID获取课程基本信息和描述
      */
+    @ApiOperation(value = "根据课程ID获取课程基本信息和描述")
     @GetMapping("{id}")
     public Result getCourseVoById(@PathVariable String id){
         CourseVo vo = courseService.getCourseVoById(id);
@@ -57,6 +61,7 @@ public class EduCourseController {
     /**
      * 修改课程基本信息和描述
      */
+    @ApiOperation(value = "修改课程基本信息和描述")
     @PutMapping("update")
     public Result updateCourseVo(@RequestBody CourseVo courseVo){
         boolean flag = courseService.updateCourseVo(courseVo);
@@ -116,6 +121,7 @@ public class EduCourseController {
      * @param id
      * @return
      */
+    @ApiOperation(value = "")
     @GetMapping("vo/{id}")
     public Result getCoursePublishById(@PathVariable String id){
         Map<String, Object> map = courseService.getMapById(id);
@@ -127,6 +133,7 @@ public class EduCourseController {
      * @param id
      * @return
      */
+    @ApiOperation(value = "")
     @PutMapping("/updateStatus/{id}")
     public Result updateByStatusById(@PathVariable String id){
         Boolean flag = courseService.updateStatusById(id);
