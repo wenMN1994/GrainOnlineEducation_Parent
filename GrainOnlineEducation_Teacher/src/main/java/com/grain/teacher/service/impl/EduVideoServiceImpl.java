@@ -17,4 +17,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> implements EduVideoService {
 
+    @Override
+    public Boolean deleteByVideoId(String id) {
+        //根据小节的ID查询视频的ID
+        //TODO 删除阿里云上的视频
+
+        int delete = baseMapper.deleteById(id);
+
+        return delete > 0;
+
+    }
 }
