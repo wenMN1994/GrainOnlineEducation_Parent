@@ -17,9 +17,24 @@ import java.util.List;
 public interface EduChapterService extends IService<EduChapter> {
 
     /**
+     * 课程章节添加
+     * @param chapter
+     * @return
+     */
+    boolean saveChapter(EduChapter chapter);
+
+    /**
      * 根据课程ID查询章节、小节的列表
      * @param id
      * @return
      */
     List<OneChapter> queryChapterAndVideoList(String id);
+
+    /**
+     * 修改章节
+     * 修改时判断章节名称是否重复
+     * @param chapter
+     * @return
+     */
+    boolean updateChapterById(EduChapter chapter);
 }

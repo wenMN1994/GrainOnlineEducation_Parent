@@ -60,10 +60,44 @@ public class EduChapterController {
     public Result save(
             @ApiParam(name = "chapter", value = "课程章节对象", required = true)
             @RequestBody EduChapter chapter){
-        boolean flag = chapterService.save(chapter);
+        boolean flag = chapterService.saveChapter(chapter);
         if(flag){
             return Result.ok();
         }else {
+            return Result.error();
+        }
+    }
+
+    /**
+     * 根据章节ID获取章节信息
+     * @param id
+     * @return
+     */
+    @ApiOperation(value = "根据章节ID获取章节信息")
+    @GetMapping("get/{id}")
+    public Result getChapterById(
+            @ApiParam(name = "id", value = "课程ID", required = true)
+            @PathVariable String id){
+
+        EduChapter chapter = chapterService.getById(id);
+        return Result.ok().data("chapter", chapter);
+    }
+
+    /**
+     * 根据章节的ID修改章节信息
+     * @param chapter
+     * @return
+     */
+    @ApiOperation(value = "根据章节的ID修改章节信息")
+    @PutMapping("update")
+    public Result updateById(
+            @ApiParam(name = "chapter", value = "课程章节对象", required = true)
+            @RequestBody EduChapter chapter){
+
+        boolean flag = chapterService.updateChapterById(chapter);
+        if(flag){
+            return Result.ok();
+        } else {
             return Result.error();
         }
     }

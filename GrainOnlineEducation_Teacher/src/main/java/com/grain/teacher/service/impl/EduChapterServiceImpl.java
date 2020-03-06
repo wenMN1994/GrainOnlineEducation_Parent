@@ -31,6 +31,21 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
     private EduVideoService videoService;
 
     @Override
+    public boolean saveChapter(EduChapter chapter) {
+        if(chapter == null){
+            return false;
+        }
+        QueryWrapper<EduChapter> chapterWrapper = new QueryWrapper<>();
+        chapterWrapper.eq("title", chapter.getTitle());
+        Integer count = baseMapper.selectCount(chapterWrapper);
+        if(count > 0){
+            return false;
+        }
+        int insert = baseMapper.insert(chapter);
+        return insert == 1;
+    }
+
+    @Override
     public List<OneChapter> queryChapterAndVideoList(String id) {
         //定义一个章节集合
         List<OneChapter> oneChapterList = new ArrayList<>();
@@ -58,5 +73,20 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
         }
 
         return oneChapterList;
+    }
+
+    @Override
+    public boolean updateChapterById(EduChapter chapter) {
+        if(chapter == null){
+            return false;
+        }
+        QueryWrapper<EduChapter> chapterWrapper = new QueryWrapper<>();
+        chapterWrapper.eq("title", chapter.getTitle());
+        Integer count = baseMapper.selectCount(chapterWrapper);
+        if(count > 0){
+            return false;
+        }
+        int update = baseMapper.updateById(chapter);
+        return update == 1;
     }
 }
