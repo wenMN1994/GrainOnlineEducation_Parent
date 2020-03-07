@@ -6,7 +6,7 @@ import com.grain.teacher.entity.EduCourse;
 import com.grain.teacher.entity.EduCourseDescription;
 import com.grain.teacher.entity.query.CourseQuery;
 import com.grain.teacher.entity.vo.CourseVo;
-import com.grain.teacher.exception.EduException;
+import com.grain.common.exception.EduException;
 import com.grain.teacher.mapper.EduCourseMapper;
 import com.grain.teacher.service.EduCourseDescriptionService;
 import com.grain.teacher.service.EduCourseService;

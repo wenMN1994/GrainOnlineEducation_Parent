@@ -1,4 +1,4 @@
-package com.grain.teacher.exception;
+package com.grain.common.exception;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

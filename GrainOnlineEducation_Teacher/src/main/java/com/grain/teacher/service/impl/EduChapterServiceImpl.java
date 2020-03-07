@@ -5,7 +5,7 @@ import com.grain.teacher.entity.EduChapter;
 import com.grain.teacher.entity.EduVideo;
 import com.grain.teacher.entity.vo.OneChapter;
 import com.grain.teacher.entity.vo.TwoVideo;
-import com.grain.teacher.exception.EduException;
+import com.grain.common.exception.EduException;
 import com.grain.teacher.mapper.EduChapterMapper;
 import com.grain.teacher.service.EduChapterService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
