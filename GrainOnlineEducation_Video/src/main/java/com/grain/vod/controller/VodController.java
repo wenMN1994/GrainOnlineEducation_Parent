@@ -32,8 +32,23 @@ public class VodController {
             @ApiParam(name = "file", value = "文件", required = true)
             @RequestParam("file") MultipartFile file) throws Exception {
 
-        String videoId = vodService.uploadVideo(file);
-        return Result.ok().message("视频上传成功").data("videoId", videoId);
+        String videoSourceId = vodService.uploadVideo(file);
+        return Result.ok().data("videoSourceId", videoSourceId);
     }
+
+    /**
+     * 根据视频ID删除视频
+     * @return
+     */
+    @ApiOperation(value = "删除视频")
+    @DeleteMapping("{videoSourceId}")
+    public Result getVideoPlayAuth(@PathVariable String videoSourceId){
+        Boolean flag = vodService.deleteVodById(videoSourceId);
+        if(flag){
+            return Result.ok();
+        }
+        return Result.error();
+    }
+
 
 }

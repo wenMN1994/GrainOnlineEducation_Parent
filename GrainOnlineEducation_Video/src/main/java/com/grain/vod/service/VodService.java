@@ -18,4 +18,11 @@ public interface VodService {
      * @return
      */
     String uploadVideo(MultipartFile file);
+
+    /**
+     * 根据视频ID删除视频
+     * @param videoSourceId
+     * @return
+     */
+    Boolean deleteVodById(String videoSourceId);
 }

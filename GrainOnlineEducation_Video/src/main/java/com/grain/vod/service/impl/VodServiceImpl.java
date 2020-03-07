@@ -3,8 +3,12 @@ package com.grain.vod.service.impl;
 import com.aliyun.vod.upload.impl.UploadVideoImpl;
 import com.aliyun.vod.upload.req.UploadStreamRequest;
 import com.aliyun.vod.upload.resp.UploadStreamResponse;
+import com.aliyuncs.DefaultAcsClient;
+import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
+import com.aliyuncs.vod.model.v20170321.DeleteVideoResponse;
 import com.grain.common.exception.EduException;
 import com.grain.vod.service.VodService;
+import com.grain.vod.utils.AliyunVodSDKUtil;
 import com.grain.vod.utils.VodConstantPropertiesUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -55,6 +59,28 @@ public class VodServiceImpl implements VodService {
             return videoId;
         } catch (IOException e) {
             throw new EduException(20001, "grain vod 服务上传失败");
+        }
+
+    }
+
+    @Override
+    public Boolean deleteVodById(String videoSourceId) {
+        try {
+            DefaultAcsClient client = AliyunVodSDKUtil.initVodClient(
+                    VodConstantPropertiesUtil.ACCESS_KEY_ID,
+                    VodConstantPropertiesUtil.ACCESS_KEY_SECRET);
+
+            DeleteVideoResponse response = new DeleteVideoResponse();
+            DeleteVideoRequest request = new DeleteVideoRequest();
+            //支持传入多个视频ID，多个用逗号分隔
+            request.setVideoIds(videoSourceId);
+
+            response = client.getAcsResponse(request);
+
+            return true;
+        } catch (Exception e) {
+            log.warn("ErrorMessage = " + e.getLocalizedMessage());
+            return false;
         }
 
     }
