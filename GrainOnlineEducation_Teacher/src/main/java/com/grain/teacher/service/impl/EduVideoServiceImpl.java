@@ -1,10 +1,13 @@
 package com.grain.teacher.service.impl;
 
+import com.grain.teacher.client.VodClient;
 import com.grain.teacher.entity.EduVideo;
 import com.grain.teacher.mapper.EduVideoMapper;
 import com.grain.teacher.service.EduVideoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
  * <p>
@@ -17,10 +20,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> implements EduVideoService {
 
+    @Autowired
+    private VodClient vodClient;
+
     @Override
     public Boolean deleteByVideoId(String id) {
         //根据小节的ID查询视频的ID
-        //TODO 删除阿里云上的视频
+        //查询云端视频id
+        EduVideo video = baseMapper.selectById(id);
+        String videoSourceId = video.getVideoSourceId();
+        //删除视频资源
+        if(!StringUtils.isEmpty(videoSourceId)){
+            vodClient.removeVideo(videoSourceId);
+        }
 
         int delete = baseMapper.deleteById(id);
 

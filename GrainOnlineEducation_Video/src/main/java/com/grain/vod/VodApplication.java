@@ -2,6 +2,7 @@ package com.grain.vod;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * @author：Dragon Wen
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version: $
  */
 @SpringBootApplication
+@EnableEurekaClient
 public class VodApplication {
 
     public static void main(String[] args) {
