@@ -8,9 +8,11 @@ import com.grain.teacher.entity.query.CourseQuery;
 import com.grain.teacher.entity.vo.CourseVo;
 import com.grain.common.exception.EduException;
 import com.grain.teacher.mapper.EduCourseMapper;
+import com.grain.teacher.service.EduChapterService;
 import com.grain.teacher.service.EduCourseDescriptionService;
 import com.grain.teacher.service.EduCourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.grain.teacher.service.EduVideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +34,12 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
     @Autowired
     private EduCourseDescriptionService courseDescriptionService;
+
+    @Autowired
+    private EduVideoService videoService;
+
+    @Autowired
+    private EduChapterService chapterService;
 
     @Override
     public String saveVo(CourseVo courseVo) {
@@ -112,9 +120,10 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
     @Override
     public boolean deleteCourseById(String id) {
-        //TODO 根据id删除所有视频
-
-        //TODO 根据id删除所有章节
+        // 根据id删除所有视频
+        videoService.deleteByCourseId(id);
+        // 根据id删除所有章节
+        chapterService.deleteChapterByCourseId(id);
 
         //删除课程描述
         boolean b = courseDescriptionService.removeById(id);
