@@ -7,6 +7,7 @@
         <module>GrainOnlineEducation_Common</module>
         <module>GrainOnlineEducation_OSS</module>
         <module>GrainOnlineEducation_Video</module>
+        <module>GrainOnlineEducation_Eureka</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -75,6 +76,15 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger.version}</version>
+            </dependency>
+
+            <!--Spring Cloud-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
 
