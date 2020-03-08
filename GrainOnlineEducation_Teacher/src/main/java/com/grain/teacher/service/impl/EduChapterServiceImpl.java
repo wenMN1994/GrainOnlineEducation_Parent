@@ -13,6 +13,7 @@ import com.grain.teacher.service.EduVideoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,5 +105,25 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
         int delete = baseMapper.deleteById(id);
         return delete > 0;
 
+    }
+
+    @Override
+    public void deleteChapterByCourseId(String courseId) {
+        QueryWrapper<EduChapter> wrapper = new QueryWrapper<>();
+        wrapper.eq("course_id", courseId);
+        List<EduChapter> chapterList = baseMapper.selectList(wrapper);
+
+        // 定义一个集合存放章节ID
+        List<String> chapterIds = new ArrayList<>();
+        // 获取课程ID
+        for (EduChapter chapter : chapterList) {
+            if(!StringUtils.isEmpty(chapter.getId())){
+                chapterIds.add(chapter.getId());
+            }
+        }
+
+        if(chapterIds.size() > 0){
+            baseMapper.deleteBatchIds(chapterIds);
+        }
     }
 }
