@@ -2,4 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.grain.ucenter.mapper.MemberMapper">
 
+    <!--//统计某一天注册人数-->
+    <select id="countRegisterNum" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM ucenter_member uc
+        WHERE DATE(uc.gmt_create)=#{day}
+    </select>
 </mapper>

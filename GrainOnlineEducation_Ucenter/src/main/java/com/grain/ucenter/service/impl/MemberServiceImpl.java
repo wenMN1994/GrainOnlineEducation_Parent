@@ -17,4 +17,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> implements MemberService {
 
+    @Override
+    public Integer registerCountNum(String day) {
+        return baseMapper.countRegisterNum(day);
+    }
 }
