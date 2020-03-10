@@ -3,6 +3,8 @@ package com.grain.statistics.service;
 import com.grain.statistics.entity.Daily;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.Map;
+
 /**
  * <p>
  * 网站统计日数据 服务类
@@ -18,4 +20,13 @@ public interface DailyService extends IService<Daily> {
      * @param day
      */
     void createStatisticsByDay(String day);
+
+    /**
+     * 获取统计数据
+     * @param begin
+     * @param end
+     * @param type
+     * @return
+     */
+    Map<String, Object> getChartData(String begin, String end, String type);
 }
