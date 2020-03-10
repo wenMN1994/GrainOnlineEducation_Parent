@@ -26,7 +26,7 @@ public class MemberController {
     @ApiOperation(value = "今日注册数")
     @GetMapping(value = "count-register/{day}")
     public Result registerCount(
-        @ApiParam(name = "day", value = "统计日期")
+        @ApiParam(name = "day", value = "统计日期", required = true)
         @PathVariable String day){
         Integer count = memberService.registerCountNum(day);
         return Result.ok().data("countRegister", count);
