@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.grain.teacher.entity.query.CourseQuery;
 import com.grain.teacher.entity.vo.CourseVo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -66,4 +67,11 @@ public interface EduCourseService extends IService<EduCourse> {
      * @return
      */
     Map<String, Object> getMapById(String id);
+
+    /**
+     * 根据讲师id查询当前讲师的课程列表
+     * @param id
+     * @return
+     */
+    List<EduCourse> selectCourseByTeacherIdFront(String id);
 }

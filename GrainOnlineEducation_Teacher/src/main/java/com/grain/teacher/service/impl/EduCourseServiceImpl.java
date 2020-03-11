@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -149,6 +150,18 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     public Map<String, Object> getMapById(String id) {
         Map<String, Object> map = baseMapper.getMapById(id);
         return map;
+    }
+
+    @Override
+    public List<EduCourse> selectCourseByTeacherIdFront(String teacherId) {
+        QueryWrapper<EduCourse> queryWrapper = new QueryWrapper<EduCourse>();
+
+        queryWrapper.eq("teacher_id", teacherId);
+        //按照最后更新时间倒序排列
+        queryWrapper.orderByDesc("gmt_modified");
+
+        List<EduCourse> courses = baseMapper.selectList(queryWrapper);
+        return courses;
     }
 
 }
