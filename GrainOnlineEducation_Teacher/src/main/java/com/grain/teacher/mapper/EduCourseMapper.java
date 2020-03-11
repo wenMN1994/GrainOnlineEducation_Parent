@@ -16,4 +16,6 @@ import java.util.Map;
 public interface EduCourseMapper extends BaseMapper<EduCourse> {
 
     Map<String, Object> getMapById(String id);
+
+    Map<String, Object> getMapByIdFront(String id);
 }

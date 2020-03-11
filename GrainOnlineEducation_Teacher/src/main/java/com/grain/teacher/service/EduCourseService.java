@@ -81,4 +81,11 @@ public interface EduCourseService extends IService<EduCourse> {
      * @return
      */
     Map<String, Object> pageListFront(Page<EduCourse> pageParam);
+
+    /**
+     * 前端根据课程Id查询课程Map对象
+     * @param id
+     * @return
+     */
+    Map<String, Object> getMapByIdFront(String id);
 }

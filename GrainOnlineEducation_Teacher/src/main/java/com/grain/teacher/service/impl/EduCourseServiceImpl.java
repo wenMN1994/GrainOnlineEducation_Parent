@@ -192,4 +192,10 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         return map;
     }
 
+    @Override
+    public Map<String, Object> getMapByIdFront(String id) {
+        Map<String, Object> map = baseMapper.getMapByIdFront(id);
+        return map;
+    }
+
 }
