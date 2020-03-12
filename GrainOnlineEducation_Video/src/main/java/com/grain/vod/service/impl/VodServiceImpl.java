@@ -8,6 +8,8 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoResponse;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthResponse;
 import com.grain.common.exception.EduException;
 import com.grain.vod.service.VodService;
 import com.grain.vod.utils.AliyunVodSDKUtil;
@@ -110,6 +112,31 @@ public class VodServiceImpl implements VodService {
             return true;
         } catch (ClientException e) {
             throw new EduException(20001, "视频删除失败");
+        }
+    }
+
+    @Override
+    public String getVideoPlayAuth(String videoId){
+        try {
+            //初始化
+            DefaultAcsClient client = AliyunVodSDKUtil.initVodClient(
+                    VodConstantPropertiesUtil.ACCESS_KEY_ID,
+                    VodConstantPropertiesUtil.ACCESS_KEY_SECRET);
+
+            //请求
+            GetVideoPlayAuthRequest request = new GetVideoPlayAuthRequest();
+            request.setVideoId(videoId);
+
+            //响应
+            GetVideoPlayAuthResponse response = client.getAcsResponse(request);
+
+            //得到播放凭证
+            String playAuth = response.getPlayAuth();
+
+            return playAuth;
+        } catch (ClientException e) {
+            e.printStackTrace();
+            throw new EduException(20001, "获取视频播放凭证失败");
         }
     }
 }

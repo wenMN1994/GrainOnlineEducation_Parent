@@ -1,5 +1,6 @@
 package com.grain.vod.service;
 
+import com.aliyuncs.exceptions.ClientException;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -34,4 +35,11 @@ public interface VodService {
      * @return
      */
     Boolean removeVideoList(List videoIdList);
+
+    /**
+     * 获取播放凭证
+     * @param videoId
+     * @return
+     */
+    String getVideoPlayAuth(String videoId) throws ClientException;
 }

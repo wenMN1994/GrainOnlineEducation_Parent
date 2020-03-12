@@ -1,5 +1,6 @@
 package com.grain.vod.controller;
 
+import com.aliyuncs.exceptions.ClientException;
 import com.grain.common.result.Result;
 import com.grain.vod.service.VodService;
 import io.swagger.annotations.Api;
@@ -44,7 +45,7 @@ public class VodController {
      */
     @ApiOperation(value = "删除视频")
     @DeleteMapping("{videoSourceId}")
-    public Result getVideoPlayAuth(@PathVariable String videoSourceId){
+    public Result deleteVideoById(@PathVariable String videoSourceId){
         Boolean flag = vodService.deleteVodById(videoSourceId);
         if(flag){
             return Result.ok();
@@ -68,4 +69,14 @@ public class VodController {
         }
         return Result.error();
     }
+
+    @ApiOperation(value = "获取播放凭证")
+    @GetMapping("get-play-auth/{videoId}")
+    public Result getVideoPlayAuth(
+            @ApiParam(name = "videoId", value = "云端视频id", required = true)
+            @PathVariable String videoId) throws ClientException {
+        String playAuth = vodService.getVideoPlayAuth(videoId);
+        return Result.ok().data("playAuth", playAuth);
+    }
+
 }
