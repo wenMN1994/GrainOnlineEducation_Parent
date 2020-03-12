@@ -198,4 +198,12 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         return map;
     }
 
+    @Override
+    public void updateCourseViewCount(String courseId) {
+
+        EduCourse course = baseMapper.selectById(courseId);
+        course.setViewCount(course.getViewCount() + 1);
+        baseMapper.updateById(course);
+    }
+
 }

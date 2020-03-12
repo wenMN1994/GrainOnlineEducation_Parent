@@ -62,6 +62,8 @@ public class EduCourseFrontController {
         //查询当前课程的章节信息
         List<OneChapter> chapterList = chapterService.queryChapterAndVideoList(courseId);
 
+        //更新课程浏览数
+        courseService.updateCourseViewCount(courseId);
         return Result.ok().data(map).data("chapterList", chapterList);
     }
 }

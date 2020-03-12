@@ -88,4 +88,10 @@ public interface EduCourseService extends IService<EduCourse> {
      * @return
      */
     Map<String, Object> getMapByIdFront(String id);
+
+    /**
+     * 更新课程浏览数
+     * @param courseId
+     */
+    void updateCourseViewCount(String courseId);
 }
