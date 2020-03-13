@@ -5,6 +5,7 @@ import com.grain.common.exception.EduException;
 import com.grain.ucenter.entity.Member;
 import com.grain.ucenter.service.MemberService;
 import com.grain.ucenter.utils.HttpClientUtils;
+import com.grain.ucenter.utils.JwtUtils;
 import com.grain.ucenter.utils.WeChatConstantPropertiesUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -146,8 +147,10 @@ public class WeChatApiController {
             memberService.save(member);
         }
 
-        //TODO 登录
+        //根据member对象生成jwt字符串
+        String token = JwtUtils.geneJsonWebToken(member);
 
-        return "redirect:http://localhost:3000";
+        //回到首页面
+        return "redirect:http://localhost:3000?token="+token;
     }
 }
