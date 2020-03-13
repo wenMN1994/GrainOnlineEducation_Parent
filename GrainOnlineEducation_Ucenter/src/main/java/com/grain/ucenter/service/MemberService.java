@@ -13,5 +13,17 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface MemberService extends IService<Member> {
 
+    /**
+     * 统计注册人数
+     * @param day
+     * @return
+     */
     public Integer registerCountNum(String day);
+
+    /**
+     * 获取微信Openid
+     * @param openid
+     * @return
+     */
+    Member getByOpenid(String openid);
 }
