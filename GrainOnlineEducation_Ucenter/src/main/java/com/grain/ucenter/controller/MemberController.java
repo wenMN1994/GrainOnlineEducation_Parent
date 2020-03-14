@@ -50,7 +50,7 @@ public class MemberController {
         member.setId(avatar);
         member.setNickname(nickname);
 
-        return Result.ok().data("member",member);
+        return Result.ok().data("loginInfo",member);
     }
 }
 

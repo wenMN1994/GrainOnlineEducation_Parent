@@ -10,6 +10,7 @@
         <module>GrainOnlineEducation_Eureka</module>
         <module>GrainOnlineEducation_Ucenter</module>
         <module>GrainOnlineEducation_Statistics</module>
+        <module>GrainOnlineEducation_Gateway</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
