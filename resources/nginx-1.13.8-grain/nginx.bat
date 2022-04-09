@@ -6,7 +6,7 @@ cls
 SET NGINX_PATH=D:  
 SET NGINX_DIR=D:\nginx-1.13.8-grain\
 color 0a   
-TITLE grain-tools Power By DragonWen (http://www.grain.com)  
+TITLE grain-tools Power By DragonWen (http://www.dragonwen.cn)  
   
 CLS   
   
@@ -14,7 +14,7 @@ ECHO.
 ECHO.    ********************************************************************  
 ECHO.    *                                                                  *  
 ECHO.    *                                                                  *  
-ECHO.    *   grain-tools Power By DragonWen (http://www.grain.com)    *  
+ECHO.    *   grain-tools Power By DragonWen (http://www.dragonwen.cn)    *  
 ECHO.    *                                                                  *  
 ECHO.    *                                                                  *  
 ECHO.    ********************************************************************  
