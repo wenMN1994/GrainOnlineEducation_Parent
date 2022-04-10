@@ -21,7 +21,7 @@
     <groupId>com.grain</groupId>
     <artifactId>GrainOnlineEducation_Parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <name>GrainOnlineEducation_Parent</name>
     <description>谷粒学院</description>
 

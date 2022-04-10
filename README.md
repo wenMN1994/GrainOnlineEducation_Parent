@@ -2,9 +2,9 @@
 
 谷粒学院，是一个B2C模式的职业技能在线教育系统，分为前台用户系统和后台运营平台。
 
-- 谷粒学院后台接口请参考：https://gitee.com/wenMN1994/GrainOnlineEducation_Parent
-- 谷粒学院后台管理UI请参考：https://gitee.com/wenMN1994/GrainOnlineEducation_Admin
-- 谷粒学院前台UI请参考：https://gitee.com/wenMN1994/GrainOnlineEducation_Web
+- 谷粒学院后台接口请参考：https://github.com/wenMN1994/GrainOnlineEducation_Parent.git
+- 谷粒学院后台管理UI请参考：https://github.com/wenMN1994/GrainOnlineEducation_Admin.git
+- 谷粒学院前台UI请参考：https://github.com/wenMN1994/GrainOnlineEducation_Web.git
 
 # 一、功能简介
 
@@ -53,7 +53,7 @@ IDEA，Visual Studio Code，JDK >= 1.8 (推荐1.8版本)， Mysql >= 5.7， Mave
 
 ### 运行系统
 
-1、前往GitHub下载页面(https://gitee.com/wenMN1994/GrainOnlineEducation_Parent)下载解压到工作目录。 建议使用Git克隆，因为克隆的方式可以和作者随时保持更新同步。使用Git命令克隆 git clone git@gitee.com:wenMN1994/GrainOnlineEducation_Parent.git
+1、前往GitHub下载页面(https://github.com/wenMN1994/GrainOnlineEducation_Parent.git)下载解压到工作目录。 建议使用Git克隆，因为克隆的方式可以和作者随时保持更新同步。使用Git命令克隆 git clone https://github.com/wenMN1994/GrainOnlineEducation_Parent.git
 
 2、导入到IDEA，IDEA会自动加载Maven 依赖包，初次加载会比较慢（根据自身网络情况而定） 
 
